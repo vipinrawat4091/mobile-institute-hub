@@ -1,7 +1,6 @@
-
 import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import Layout from '../components/Layout';
+import { useAuth } from '../contexts/AuthContext.jsx';
+import Layout from '../components/Layout.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
   Home, 

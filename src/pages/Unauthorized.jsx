@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout.jsx';
 
 const Unauthorized = () => {
   const navigate = useNavigate();
@@ -24,3 +23,4 @@ const Unauthorized = () => {
 };
 
 export default Unauthorized;
+

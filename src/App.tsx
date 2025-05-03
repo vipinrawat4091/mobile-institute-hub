@@ -6,11 +6,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Unauthorized from "./pages/Unauthorized";
+import Login from "./pages/Login.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Unauthorized from "./pages/Unauthorized.jsx";
 import NotFound from "./pages/NotFound";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 const queryClient = new QueryClient();
 
