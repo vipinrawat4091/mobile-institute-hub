@@ -114,7 +114,7 @@ const Layout = ({ children }) => {
 
       {/* Sidebar */}
       <aside 
-        className={`fixed top-0 left-0 z-30 w-64 h-full transform transition-transform duration-300 ease-in-out bg-sidebar border-r border-border md:translate-x-0 ${
+        className={`fixed top-0 left-0 z-30 w-64 h-full transform transition-transform duration-300 ease-in-out bg-sidebar border-r border-border ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >

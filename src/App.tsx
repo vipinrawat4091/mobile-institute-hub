@@ -12,6 +12,13 @@ import Unauthorized from "./pages/Unauthorized.jsx";
 import NotFound from "./pages/NotFound";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import AttendanceManagement from "./pages/AttendanceManagement.jsx";
+import UserManagement from "./pages/UserManagement.jsx";
+import SalaryManagement from "./pages/SalaryManagement.jsx";
+import LeaveApproval from "./pages/LeaveApproval.jsx";
+import Transport from "./pages/Transport.jsx";
+import Notices from "./pages/Notices.jsx";
+import Timetable from "./pages/Timetable.jsx";
+import Fees from "./pages/Fees.jsx";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +44,41 @@ const App = () => (
             <Route path="/attendance-management" element={
               <PrivateRoute requiredRoles={["admin", "superadmin"]}>
                 <AttendanceManagement />
+              </PrivateRoute>
+            } />
+            <Route path="/user-management" element={
+              <PrivateRoute requiredRoles={["admin", "superadmin"]}>
+                <UserManagement />
+              </PrivateRoute>
+            } />
+            <Route path="/salary-management" element={
+              <PrivateRoute requiredRoles={["admin", "superadmin"]}>
+                <SalaryManagement />
+              </PrivateRoute>
+            } />
+            <Route path="/leave-approval" element={
+              <PrivateRoute requiredRoles={["admin", "superadmin", "teacher"]}>
+                <LeaveApproval />
+              </PrivateRoute>
+            } />
+            <Route path="/transport" element={
+              <PrivateRoute requiredRoles={["admin", "superadmin"]}>
+                <Transport />
+              </PrivateRoute>
+            } />
+            <Route path="/notices" element={
+              <PrivateRoute>
+                <Notices />
+              </PrivateRoute>
+            } />
+            <Route path="/timetable" element={
+              <PrivateRoute>
+                <Timetable />
+              </PrivateRoute>
+            } />
+            <Route path="/fees" element={
+              <PrivateRoute requiredRoles={["admin", "superadmin"]}>
+                <Fees />
               </PrivateRoute>
             } />
             
