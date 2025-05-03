@@ -74,6 +74,9 @@ const Layout = ({ children }) => {
       ],
       staff: [
         { name: 'Profile', icon: User, link: '/profile' },
+        { name: 'Leave Application', icon: FileText, link: '/leave-application' },
+        { name: 'Attendance', icon: Calendar, link: '/attendance-record' },
+        { name: 'Salary', icon: FileText, link: '/salary' },
       ],
       student: [
         { name: 'Attendance', icon: Calendar, link: '/attendance' },
@@ -81,13 +84,16 @@ const Layout = ({ children }) => {
         { name: 'Report Card', icon: FileText, link: '/report' },
         { name: 'ID Card', icon: User, link: '/id-card' },
         { name: 'Notices', icon: Bell, link: '/notices' },
+        { name: 'Timetable', icon: Calendar, link: '/timetable' },
       ],
       parent: [
-        { name: 'Leave Application', icon: FileText, link: '/leave' },
-        { name: 'Attendance', icon: Calendar, link: '/attendance' },
-        { name: 'Marks', icon: FileText, link: '/marks' },
-        { name: 'Report Card', icon: FileText, link: '/report' },
+        { name: 'Leave Application', icon: FileText, link: '/leave-application' },
+        { name: 'Attendance', icon: Calendar, link: '/child-attendance' },
+        { name: 'Marks', icon: FileText, link: '/child-marks' },
+        { name: 'Report Card', icon: FileText, link: '/child-report' },
         { name: 'Notices', icon: Bell, link: '/notices' },
+        { name: 'Fees', icon: FileText, link: '/fees-payment' },
+        { name: 'Events', icon: Calendar, link: '/events' },
       ]
     };
 

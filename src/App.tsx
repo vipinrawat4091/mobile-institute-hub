@@ -19,6 +19,12 @@ import Transport from "./pages/Transport.jsx";
 import Notices from "./pages/Notices.jsx";
 import Timetable from "./pages/Timetable.jsx";
 import Fees from "./pages/Fees.jsx";
+import LeaveApplication from "./pages/LeaveApplication.jsx";
+import ChildAttendance from "./pages/ChildAttendance.jsx";
+import ChildMarks from "./pages/ChildMarks.jsx";
+import ChildReport from "./pages/ChildReport.jsx";
+import FeesPayment from "./pages/FeesPayment.jsx";
+import Events from "./pages/Events.jsx";
 
 const queryClient = new QueryClient();
 
@@ -79,6 +85,38 @@ const App = () => (
             <Route path="/fees" element={
               <PrivateRoute requiredRoles={["admin", "superadmin"]}>
                 <Fees />
+              </PrivateRoute>
+            } />
+            
+            {/* Parent Routes */}
+            <Route path="/leave-application" element={
+              <PrivateRoute requiredRoles={["parent", "student", "staff", "teacher"]}>
+                <LeaveApplication />
+              </PrivateRoute>
+            } />
+            <Route path="/child-attendance" element={
+              <PrivateRoute requiredRoles={["parent"]}>
+                <ChildAttendance />
+              </PrivateRoute>
+            } />
+            <Route path="/child-marks" element={
+              <PrivateRoute requiredRoles={["parent"]}>
+                <ChildMarks />
+              </PrivateRoute>
+            } />
+            <Route path="/child-report" element={
+              <PrivateRoute requiredRoles={["parent"]}>
+                <ChildReport />
+              </PrivateRoute>
+            } />
+            <Route path="/fees-payment" element={
+              <PrivateRoute requiredRoles={["parent"]}>
+                <FeesPayment />
+              </PrivateRoute>
+            } />
+            <Route path="/events" element={
+              <PrivateRoute requiredRoles={["parent", "student", "teacher"]}>
+                <Events />
               </PrivateRoute>
             } />
             
