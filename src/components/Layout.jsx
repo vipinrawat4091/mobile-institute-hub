@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
@@ -14,7 +15,6 @@ import {
   User,
   FileText,
   Bus,
-  Search,
   Check,
 } from 'lucide-react';
 
@@ -23,16 +23,18 @@ const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
   
   const getRoleColor = (role) => {
     const roleColors = {
-      superadmin: 'role-superadmin',
-      admin: 'role-admin',
-      teacher: 'role-teacher',
-      staff: 'role-staff',
-      student: 'role-student',
-      parent: 'role-parent'
+      superadmin: 'bg-purple-600 text-white',
+      admin: 'bg-blue-600 text-white',
+      teacher: 'bg-green-600 text-white',
+      staff: 'bg-amber-600 text-white',
+      student: 'bg-sky-600 text-white',
+      parent: 'bg-rose-600 text-white'
     };
     return roleColors[role] || 'bg-gray-500';
   };
@@ -92,6 +94,14 @@ const Layout = ({ children }) => {
     return [...commonItems, ...(roleItems[currentUser.role] || [])];
   };
 
+  const handleNavigation = (link) => {
+    navigate(link);
+    // Close sidebar on mobile when navigating
+    if (window.innerWidth < 768) {
+      setSidebarOpen(false);
+    }
+  };
+
   return (
     <div className="flex h-full min-h-screen bg-background">
       {/* Mobile sidebar backdrop */}
@@ -104,8 +114,8 @@ const Layout = ({ children }) => {
 
       {/* Sidebar */}
       <aside 
-        className={`fixed top-0 left-0 z-30 w-64 h-full transform transition-transform duration-300 ease-in-out bg-sidebar border-r border-border md:relative md:translate-x-0 ${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed top-0 left-0 z-30 w-64 h-full transform transition-transform duration-300 ease-in-out bg-sidebar border-r border-border md:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
         <div className="flex flex-col h-full">
@@ -136,14 +146,9 @@ const Layout = ({ children }) => {
               {getNavItems().map((item) => (
                 <li key={item.name}>
                   <Button
-                    variant="ghost"
+                    variant={window.location.pathname === item.link ? "secondary" : "ghost"}
                     className="w-full justify-start text-left h-10"
-                    onClick={() => {
-                      navigate(item.link);
-                      if (window.innerWidth < 768) {
-                        setSidebarOpen(false);
-                      }
-                    }}
+                    onClick={() => handleNavigation(item.link)}
                   >
                     <item.icon className="mr-3 h-4 w-4" />
                     {item.name}
@@ -167,7 +172,7 @@ const Layout = ({ children }) => {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col min-w-0">
+      <main className="flex-1 flex flex-col min-w-0 md:ml-64">
         {/* Top header */}
         <header className="h-16 flex items-center border-b border-border px-4">
           <Button 

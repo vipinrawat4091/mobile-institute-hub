@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Unauthorized from "./pages/Unauthorized.jsx";
 import NotFound from "./pages/NotFound";
 import PrivateRoute from "./components/PrivateRoute.jsx";
+import AttendanceManagement from "./pages/AttendanceManagement.jsx";
 
 const queryClient = new QueryClient();
 
@@ -31,8 +32,13 @@ const App = () => (
                 <Dashboard />
               </PrivateRoute>
             } />
-
-            {/* Role-specific routes can be added here */}
+            
+            {/* Admin Routes */}
+            <Route path="/attendance-management" element={
+              <PrivateRoute requiredRoles={["admin", "superadmin"]}>
+                <AttendanceManagement />
+              </PrivateRoute>
+            } />
             
             {/* Utility Routes */}
             <Route path="/unauthorized" element={<Unauthorized />} />
