@@ -16,15 +16,21 @@ import {
   FileText,
   Bus,
   Check,
+  ChevronLeft,
 } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const { currentUser, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [minimized, setMinimized] = useState(false);
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const toggleMinimized = () => {
+    setMinimized(!minimized);
   };
   
   const getRoleColor = (role) => {
@@ -120,26 +126,38 @@ const Layout = ({ children }) => {
 
       {/* Sidebar */}
       <aside 
-        className={`fixed top-0 left-0 z-30 w-64 h-full transform transition-transform duration-300 ease-in-out bg-sidebar border-r border-border ${
+        className={`fixed top-0 left-0 z-30 h-full transform transition-all duration-300 ease-in-out bg-sidebar border-r border-border ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-        }`}
+        } ${minimized ? 'w-16 md:w-16' : 'w-64'}`}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full relative">
+          {/* Minimize button - only visible on desktop */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-2 right-1 hidden md:flex"
+            onClick={toggleMinimized}
+          >
+            <ChevronLeft className={`transition-transform ${minimized ? 'rotate-180' : ''}`} />
+          </Button>
+
           {/* Sidebar header */}
-          <div className="flex items-center justify-between h-16 px-4 border-b border-border">
-            <div className="flex items-center space-x-2">
+          <div className={`flex items-center ${minimized ? 'justify-center' : 'justify-between'} h-16 px-4 border-b border-border`}>
+            <div className={`flex ${minimized ? 'justify-center w-full' : 'items-center space-x-2'}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${getRoleColor(currentUser?.role)}`}>
                 {currentUser?.name?.charAt(0) || 'U'}
               </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-medium">{currentUser?.name || 'User'}</span>
-                <span className="text-xs text-muted-foreground capitalize">{currentUser?.role || 'Role'}</span>
-              </div>
+              {!minimized && (
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium">{currentUser?.name || 'User'}</span>
+                  <span className="text-xs text-muted-foreground capitalize">{currentUser?.role || 'Role'}</span>
+                </div>
+              )}
             </div>
             <Button 
               variant="ghost" 
               size="icon" 
-              className="md:hidden" 
+              className={`md:hidden ${minimized ? 'hidden' : ''}`} 
               onClick={() => setSidebarOpen(false)}
             >
               <Menu size={20} />
@@ -153,11 +171,12 @@ const Layout = ({ children }) => {
                 <li key={item.name}>
                   <Button
                     variant={window.location.pathname === item.link ? "secondary" : "ghost"}
-                    className="w-full justify-start text-left h-10"
+                    className={`${minimized ? 'w-10 p-0 justify-center' : 'w-full justify-start text-left'} h-10`}
                     onClick={() => handleNavigation(item.link)}
+                    title={minimized ? item.name : ''}
                   >
-                    <item.icon className="mr-3 h-4 w-4" />
-                    {item.name}
+                    <item.icon className={minimized ? 'mx-auto' : 'mr-3'} />
+                    {!minimized && item.name}
                   </Button>
                 </li>
               ))}
@@ -165,20 +184,22 @@ const Layout = ({ children }) => {
           </nav>
 
           {/* Logout button */}
-          <div className="p-4 border-t border-border">
+          <div className={`p-4 border-t border-border ${minimized ? 'flex justify-center' : ''}`}>
             <Button 
               variant="ghost" 
-              className="w-full justify-start text-left" 
+              className={`${minimized ? 'w-10 p-0 justify-center' : 'w-full justify-start text-left'}`} 
               onClick={logout}
+              title={minimized ? 'Logout' : ''}
             >
-              <LogOut className="mr-3 h-4 w-4" /> Logout
+              <LogOut className={minimized ? 'mx-auto' : 'mr-3'} />
+              {!minimized && 'Logout'}
             </Button>
           </div>
         </div>
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col min-w-0 md:ml-64">
+      <main className={`flex-1 flex flex-col min-w-0 ${minimized ? 'md:ml-16' : 'md:ml-64'} transition-all duration-300`}>
         {/* Top header */}
         <header className="h-16 flex items-center border-b border-border px-4">
           <Button 
