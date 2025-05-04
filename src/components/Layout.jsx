@@ -72,12 +72,13 @@ const Layout = ({ children }) => {
         { name: 'Fees', icon: FileText, link: '/fees' },
       ],
       teacher: [
-        { name: 'Attendance', icon: Calendar, link: '/attendance' },
+        { name: 'Class Attendance', icon: Calendar, link: '/class-attendance' },
         { name: 'Leave Approval', icon: Check, link: '/leave-approval' },
         { name: 'Notices', icon: Bell, link: '/notices' },
         { name: 'Time Table', icon: Calendar, link: '/timetable' },
-        { name: 'Leave Application', icon: FileText, link: '/leave' },
+        { name: 'Leave Application', icon: FileText, link: '/leave-application' },
         { name: 'Profile', icon: User, link: '/profile' },
+        { name: 'Events', icon: Calendar, link: '/events' },
       ],
       staff: [
         { name: 'Profile', icon: User, link: '/profile' },
@@ -92,6 +93,8 @@ const Layout = ({ children }) => {
         { name: 'ID Card', icon: User, link: '/id-card' },
         { name: 'Notices', icon: Bell, link: '/notices' },
         { name: 'Timetable', icon: Calendar, link: '/timetable' },
+        { name: 'Events', icon: Calendar, link: '/events' },
+        { name: 'Leave Application', icon: FileText, link: '/leave-application' },
       ],
       parent: [
         { name: 'Leave Application', icon: FileText, link: '/leave-application' },
@@ -142,12 +145,13 @@ const Layout = ({ children }) => {
             <ChevronLeft className={`transition-transform ${minimized ? 'rotate-180' : ''}`} />
           </Button>
 
-          {/* Close button - only visible on mobile */}
+          {/* Close button - visible on mobile */}
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-2 right-1 md:hidden flex z-50"
+            className="absolute top-2 right-1 md:hidden z-50"
             onClick={() => setSidebarOpen(false)}
+            style={{ display: sidebarOpen ? 'flex' : 'none' }}
           >
             <X size={24} />
           </Button>
