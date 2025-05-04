@@ -114,7 +114,7 @@ const Layout = ({ children }) => {
       {sidebarOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
-          onClick={toggleSidebar}
+          onClick={() => setSidebarOpen(false)}
         />
       )}
 
@@ -140,7 +140,7 @@ const Layout = ({ children }) => {
               variant="ghost" 
               size="icon" 
               className="md:hidden" 
-              onClick={toggleSidebar}
+              onClick={() => setSidebarOpen(false)}
             >
               <Menu size={20} />
             </Button>
@@ -185,7 +185,7 @@ const Layout = ({ children }) => {
             variant="ghost" 
             size="icon" 
             className="md:hidden"
-            onClick={toggleSidebar}
+            onClick={() => setSidebarOpen(true)}
           >
             <Menu size={20} />
           </Button>
