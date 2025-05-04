@@ -25,6 +25,10 @@ import ChildMarks from "./pages/ChildMarks.jsx";
 import ChildReport from "./pages/ChildReport.jsx";
 import FeesPayment from "./pages/FeesPayment.jsx";
 import Events from "./pages/Events.jsx";
+import Attendance from "./pages/Attendance.jsx";
+import Marks from "./pages/Marks.jsx";
+import Report from "./pages/Report.jsx";
+import IdCard from "./pages/IdCard.jsx";
 
 const queryClient = new QueryClient();
 
@@ -117,6 +121,28 @@ const App = () => (
             <Route path="/events" element={
               <PrivateRoute requiredRoles={["parent", "student", "teacher"]}>
                 <Events />
+              </PrivateRoute>
+            } />
+            
+            {/* Student Routes */}
+            <Route path="/attendance" element={
+              <PrivateRoute requiredRoles={["student"]}>
+                <Attendance />
+              </PrivateRoute>
+            } />
+            <Route path="/marks" element={
+              <PrivateRoute requiredRoles={["student"]}>
+                <Marks />
+              </PrivateRoute>
+            } />
+            <Route path="/report" element={
+              <PrivateRoute requiredRoles={["student"]}>
+                <Report />
+              </PrivateRoute>
+            } />
+            <Route path="/id-card" element={
+              <PrivateRoute requiredRoles={["student"]}>
+                <IdCard />
               </PrivateRoute>
             } />
             

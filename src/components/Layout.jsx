@@ -17,6 +17,7 @@ import {
   Bus,
   Check,
   ChevronLeft,
+  X,
 } from 'lucide-react';
 
 const Layout = ({ children }) => {
@@ -141,6 +142,16 @@ const Layout = ({ children }) => {
             <ChevronLeft className={`transition-transform ${minimized ? 'rotate-180' : ''}`} />
           </Button>
 
+          {/* Close button - only visible on mobile */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-2 right-1 md:hidden flex z-50"
+            onClick={() => setSidebarOpen(false)}
+          >
+            <X size={24} />
+          </Button>
+
           {/* Sidebar header */}
           <div className={`flex items-center ${minimized ? 'justify-center' : 'justify-between'} h-16 px-4 border-b border-border`}>
             <div className={`flex ${minimized ? 'justify-center w-full' : 'items-center space-x-2'}`}>
@@ -154,14 +165,6 @@ const Layout = ({ children }) => {
                 </div>
               )}
             </div>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className={`md:hidden ${minimized ? 'hidden' : ''}`} 
-              onClick={() => setSidebarOpen(false)}
-            >
-              <Menu size={20} />
-            </Button>
           </div>
 
           {/* Navigation links */}
