@@ -18,6 +18,8 @@ import {
   Check,
   ChevronLeft,
   X,
+  Shield,
+  Building,
 } from 'lucide-react';
 
 const Layout = ({ children }) => {
@@ -57,8 +59,8 @@ const Layout = ({ children }) => {
     // Role-specific items
     const roleItems = {
       superadmin: [
-        { name: 'Institutes', icon: FileText, link: '/institutes' },
-        { name: 'Permission Management', icon: Settings, link: '/permissions' },
+        { name: 'Institutes', icon: Building, link: '/institutes' },
+        { name: 'Permission Management', icon: Shield, link: '/permissions' },
         { name: 'User Creation', icon: UserPlus, link: '/user-creation' },
       ],
       admin: [
@@ -151,7 +153,6 @@ const Layout = ({ children }) => {
             size="icon"
             className="absolute top-2 right-1 md:hidden z-50"
             onClick={() => setSidebarOpen(false)}
-            style={{ display: sidebarOpen ? 'flex' : 'none' }}
           >
             <X size={24} />
           </Button>

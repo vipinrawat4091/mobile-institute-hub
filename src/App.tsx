@@ -30,6 +30,9 @@ import Marks from "./pages/Marks.jsx";
 import Report from "./pages/Report.jsx";
 import IdCard from "./pages/IdCard.jsx";
 import ClassAttendance from "./pages/ClassAttendance.jsx";
+import Institutes from "./pages/Institutes.jsx";
+import Permissions from "./pages/Permissions.jsx";
+import UserCreation from "./pages/UserCreation.jsx";
 
 const queryClient = new QueryClient();
 
@@ -90,6 +93,23 @@ const App = () => (
             <Route path="/fees" element={
               <PrivateRoute requiredRoles={["admin", "superadmin"]}>
                 <Fees />
+              </PrivateRoute>
+            } />
+            
+            {/* Superadmin Routes */}
+            <Route path="/institutes" element={
+              <PrivateRoute requiredRoles={["superadmin"]}>
+                <Institutes />
+              </PrivateRoute>
+            } />
+            <Route path="/permissions" element={
+              <PrivateRoute requiredRoles={["superadmin"]}>
+                <Permissions />
+              </PrivateRoute>
+            } />
+            <Route path="/user-creation" element={
+              <PrivateRoute requiredRoles={["superadmin"]}>
+                <UserCreation />
               </PrivateRoute>
             } />
             
